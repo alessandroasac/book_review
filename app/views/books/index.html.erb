@@ -3,8 +3,15 @@
 <% if @books.empty? %>
   <h1>There are no books currently in this category</h1>
 <% else %>
-  <% @books.each do |book| %>
-    <h2><%= link_to book.title, book %></h2>
-  <% end %>
-<% end %>
 
+  <div class="row">
+      <% @books.each_with_index do |book, index| %>
+        <div class="col-md-3">
+          <%= link_to book do %>
+            <%= image_tag book.book_img.url(:book_index), class: 'book' %>
+          <% end %>
+        </div>
+      <% end %>
+  </div>
+
+<% end %>

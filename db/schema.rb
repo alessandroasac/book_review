@@ -11,16 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161202183856) do
+ActiveRecord::Schema.define(version: 20161203142001) do
 
   create_table "books", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
     t.string   "author"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
     t.integer  "user_id"
     t.integer  "category_id"
+    t.string   "book_img_file_name"
+    t.string   "book_img_content_type"
+    t.integer  "book_img_file_size"
+    t.datetime "book_img_updated_at"
   end
 
   add_index "books", ["category_id"], name: "index_books_on_category_id"
