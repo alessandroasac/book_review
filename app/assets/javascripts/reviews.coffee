@@ -1,9 +1,7 @@
 ready = ->
-  $('.review-rating').raty
-    readOnly: true,
+  $('#rating-form').raty
     path: '/assets/raty-2.7.1/',
-    score: ->
-      $(this).attr 'data-score'
+    scoreName: 'review[rating]',
 
 # $(document).ready(ready)
 $(document).on('turbolinks:load', ready)

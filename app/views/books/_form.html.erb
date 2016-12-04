@@ -1,8 +1,8 @@
 <%= simple_form_for @book do |f| %>
-  <%= f.association :category, prompt: 'Select a Category' %>
-  <%= f.file_field :book_img %>
+  <%= f.association :category, prompt: 'Select a Category', label: false %>
+  <%= f.input :book_img, label: false %>
   <%= f.input :title, label: 'Book Title' %>
   <%= f.input :description %>
   <%= f.input :author %>
-  <%= f.button :submit %>
+  <%= f.button :submit, class: 'btn-custom2' %>
 <% end %>
