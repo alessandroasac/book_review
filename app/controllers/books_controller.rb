@@ -1,14 +1,13 @@
 # BooksController
 class BooksController < ApplicationController
   before_action :find_book, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:new, :edit]
+  before_action :authenticate_user!, only: [:new, :edit, :create, :update]
 
   def index
     if params[:category].blank?
       @books = Book.all.order('created_at DESC')
     else
-      category_id = Category.find_by(name: params[:category]).id
-      @books = Book.where(category_id: category_id).order('created_at DESC')
+      @books = Book.by_category(params[:category])
     end
   end
 
@@ -17,12 +16,10 @@ class BooksController < ApplicationController
 
   def new
     @book = current_user.books.build
-    @categories = Category.all.map { |c| [c.name, c.id] }
   end
 
   def create
     @book = current_user.books.build(book_params)
-    # @book.category_id = params[:category_id]
 
     if @book.save
       redirect_to root_url
@@ -32,11 +29,9 @@ class BooksController < ApplicationController
   end
 
   def edit
-    @categories = Category.all.map { |c| [c.name, c.id] }
   end
 
   def update
-    @book.category_id = params[:category_id]
     if @book.update(book_params)
       redirect_to @book
     else

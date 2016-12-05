@@ -141,6 +141,20 @@ p.alert, p.notice {
 }
 
 /* Book styles */
+/* centered columns styles */
+.row-centered {
+	text-align:center;
+}
+
+.col-centered {
+	display:inline-block;
+	float:none;
+	/* reset the text-align */
+	text-align:left;
+	/* inline-block space fix */
+	margin-right:-4px;
+}
+
 
 .book {
 	height: 350px;
@@ -214,9 +228,9 @@ p.alert, p.notice {
 	}
 
 	.review {
-		border-bottom: 1px solid gainsboro;
 		margin-bottom: 15px;
 		padding-bottom: 10px;
+		min-height: 150px;
 
 		.review-comment {
 			font-size: 1.05em;
@@ -227,6 +241,10 @@ p.alert, p.notice {
 
 	.new-review {
 		padding-top: 8px;
+	}
+
+	.btn-add-review {
+		float: right;
 	}
 
 }

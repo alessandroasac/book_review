@@ -4,6 +4,14 @@
   </div>
   <div class="col-md-8">
     <div class="book-info">
+      <div class="links btn-group" style="float: right">
+        <%= link_to 'Back', root_path, class: 'btn btn-custom' %>
+        <% if @book.user == current_user %>
+        <%= link_to 'Edit', edit_book_path(@book), class: 'btn btn-custom' %>
+        <%= link_to 'Delete', @book, method: :delete,
+        data: { confirm: 'Are you sure?' }, class: 'btn btn-custom' %>
+        <% end %>
+      </div>
       <h2 class="book-title"><%= @book.title %></h2>
       <h3 class="book-author"><span>From</span> <%= @book.author %></h3>
       <h4 class="average-rating">Average Rating</h4>
@@ -15,22 +23,14 @@
 </div>
 
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-12">
     <div class="reviews">
+      <%= link_to 'Add Review', new_book_review_path(@book),
+                  class: 'btn btn-custom btn-add-review' %>
       <h1>Reviews</h1>
-      <%= render @book.reviews %>
-      <div>
-        <%= link_to 'Add Review', new_book_review_path(@book), class: 'btn btn-custom' %>
+      <div class="row">
+        <%= render @book.reviews %>
       </div>
     </div>
   </div>
-</div>
-
-<div class="links btn-group">
-  <%= link_to 'Back', root_path, class: 'btn btn-custom' %>
-  <% if @book.user == current_user %>
-    <%= link_to 'Edit', edit_book_path(@book), class: 'btn btn-custom' %>
-    <%= link_to 'Delete', @book, method: :delete,
-                data: { confirm: 'Are you sure?' }, class: 'btn btn-custom' %>
-  <% end %>
 </div>

@@ -3,6 +3,12 @@ class Book < ActiveRecord::Base
   belongs_to :category, required: true
   has_many :reviews
 
+  scope :by_category, -> (category_name) {
+                        joins(:category)
+                        .where(categories: { name: category_name })
+                        .order('created_at DESC')
+                      }
+
   has_attached_file :book_img,
                     styles: { book_index: "250x350>", book_show: "325x475>" },
                     default_url: "/images/:style/missing.png"
